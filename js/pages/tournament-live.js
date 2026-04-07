@@ -3,7 +3,7 @@
 // Poll every 15 giây khi đang ở trang này
 // ============================================================
 
-let liveState = {
+let tLiveState = {
   matchId: null,
   eventId: null,
   match: null,
@@ -28,8 +28,8 @@ async function renderTournamentLive(container, params = {}) {
     return;
   }
 
-  liveState.matchId = matchId;
-  liveState.eventId = eventId;
+  tLiveState.matchId = matchId;
+  tLiveState.eventId = eventId;
   _stopLivePoll();
 
   await _loadLiveData(container);
@@ -38,19 +38,19 @@ async function renderTournamentLive(container, params = {}) {
 async function _loadLiveData(container) {
   try {
     const res = await API.call('getLiveMatch', {
-      event_match_id: liveState.matchId,
-      event_id: liveState.eventId
+      event_match_id: tLiveState.matchId,
+      event_id: tLiveState.eventId
     });
     if (!res.success || !res.match) {
       container.innerHTML = `<div class="card">${emptyState('📺', 'Không có trận nào đang diễn ra')}</div>`;
       return;
     }
-    liveState.match = res.match;
-    liveState.events = res.events || [];
+    tLiveState.match = res.match;
+    tLiveState.events = res.events || [];
 
     // Lấy danh sách đội của event để hiển thị tên
-    const detailRes = await API.call('getEventDetail', { event_id: liveState.match.event_id });
-    if (detailRes.success) liveState.teams = detailRes.teams || [];
+    const detailRes = await API.call('getEventDetail', { event_id: tLiveState.match.event_id });
+    if (detailRes.success) tLiveState.teams = detailRes.teams || [];
 
     _renderLiveScreen(container);
     _startLivePoll(container);
@@ -64,7 +64,7 @@ async function _loadLiveData(container) {
 // ============================================================
 
 function _renderLiveScreen(container) {
-  const { match, events, teams } = liveState;
+  const { match, events, teams } = tLiveState;
   const user = getStoredUser();
   const isAdmin = user?.is_admin;
 
@@ -276,8 +276,8 @@ async function quickAdjustScore(matchId, newHome, newAway, side) {
       score_away: newAway
     });
     if (res.success) {
-      liveState.match.score_home = newHome;
-      liveState.match.score_away = newAway;
+      tLiveState.match.score_home = newHome;
+      tLiveState.match.score_away = newAway;
       _renderLiveScreen(document.getElementById('page-content'));
     } else showToast(res.error, 'error');
   } catch (e) { showToast('Lỗi cập nhật tỉ số', 'error'); }
@@ -318,19 +318,19 @@ async function submitAddMatchEvent(matchId) {
 async function _reloadLive() {
   try {
     const res = await API.call('getLiveMatch', {
-      event_match_id: liveState.matchId,
-      event_id: liveState.eventId
+      event_match_id: tLiveState.matchId,
+      event_id: tLiveState.eventId
     });
     if (res.success && res.match) {
-      liveState.match = res.match;
-      liveState.events = res.events || [];
+      tLiveState.match = res.match;
+      tLiveState.events = res.events || [];
       _renderLiveScreen(document.getElementById('page-content'));
     }
   } catch (e) {}
 }
 
 function confirmRemoveLastEvent(matchId) {
-  const lastEvent = liveState.events[liveState.events.length - 1];
+  const lastEvent = tLiveState.events[tLiveState.events.length - 1];
   if (!lastEvent) return;
   confirmDialog(
     `Xóa sự kiện: ${CONFIG.EVENT_TYPE_LABEL[lastEvent.event_type]?.icon} phút ${lastEvent.minute}' — ${lastEvent.player_name}?`,
@@ -373,41 +373,41 @@ function confirmFinishMatch(matchId) {
 
 function _startLivePoll(container) {
   _stopLivePoll();
-  liveState.pollTimer = setInterval(async () => {
+  tLiveState.pollTimer = setInterval(async () => {
     // Chỉ poll nếu vẫn đang ở trang này
-    if (document.getElementById('live-clock') === null && liveState.match?.status === 'ongoing') return;
+    if (document.getElementById('live-clock') === null && tLiveState.match?.status === 'ongoing') return;
     await _reloadLive();
   }, 15000);
 }
 
 function _stopLivePoll() {
-  if (liveState.pollTimer) {
-    clearInterval(liveState.pollTimer);
-    liveState.pollTimer = null;
+  if (tLiveState.pollTimer) {
+    clearInterval(tLiveState.pollTimer);
+    tLiveState.pollTimer = null;
   }
-  if (liveState.matchTimer) {
-    clearInterval(liveState.matchTimer);
-    liveState.matchTimer = null;
+  if (tLiveState.matchTimer) {
+    clearInterval(tLiveState.matchTimer);
+    tLiveState.matchTimer = null;
   }
 }
 
 function _startMatchTimer() {
   _stopMatchTimer();
-  liveState.elapsedSeconds = 0;
-  liveState.matchTimer = setInterval(() => {
-    liveState.elapsedSeconds++;
+  tLiveState.elapsedSeconds = 0;
+  tLiveState.matchTimer = setInterval(() => {
+    tLiveState.elapsedSeconds++;
     const el = document.getElementById('live-clock');
     if (el) {
-      const mins = Math.floor(liveState.elapsedSeconds / 60);
+      const mins = Math.floor(tLiveState.elapsedSeconds / 60);
       el.textContent = `${mins}'`;
     }
   }, 1000);
 }
 
 function _stopMatchTimer() {
-  if (liveState.matchTimer) {
-    clearInterval(liveState.matchTimer);
-    liveState.matchTimer = null;
+  if (tLiveState.matchTimer) {
+    clearInterval(tLiveState.matchTimer);
+    tLiveState.matchTimer = null;
   }
 }
 
