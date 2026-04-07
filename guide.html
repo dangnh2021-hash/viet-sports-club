@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Hướng dẫn sử dụng - Viet Sports Club</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#166534" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      min-height: 100vh;
+    }
+    .hero {
+      background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .hero-icon { font-size: 64px; margin-bottom: 12px; }
+    .hero h1 { font-size: 28px; font-weight: 800; color: white; }
+    .hero p { color: #bbf7d0; margin-top: 6px; font-size: 15px; }
+
+    .container { max-width: 600px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    /* Section */
+    .section { margin-bottom: 32px; }
+    .section-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 18px; font-weight: 700; color: #4ade80;
+      margin-bottom: 16px; padding-bottom: 10px;
+      border-bottom: 2px solid #1e3a2a;
+    }
+    .section-title .num {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: #166534; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; flex-shrink: 0;
+    }
+
+    /* Step card */
+    .step {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .step-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 10px;
+    }
+    .step-icon {
+      font-size: 28px; flex-shrink: 0;
+    }
+    .step-title {
+      font-weight: 700; font-size: 15px; color: white;
+    }
+    .step-sub {
+      color: #94a3b8; font-size: 13px; margin-top: 2px;
+    }
+    .step-body {
+      color: #cbd5e1; font-size: 14px; line-height: 1.6;
+      padding-left: 4px;
+    }
+    .step-body ol { padding-left: 20px; }
+    .step-body li { margin-bottom: 6px; }
+    .step-body strong { color: white; }
+
+    /* Phone mockup steps */
+    .phone-step {
+      background: #0f172a;
+      border: 1px solid #1e3a5f;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+    .phone-step .action {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .phone-step .action:last-child { margin-bottom: 0; }
+    .action-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #166534; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .action-text { font-size: 14px; color: #e2e8f0; line-height: 1.5; }
+    .action-text em { color: #4ade80; font-style: normal; font-weight: 600; }
+
+    /* Highlight box */
+    .tip {
+      background: rgba(74, 222, 128, 0.08);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #bbf7d0;
+      margin-top: 12px;
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+    .warning {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #fde68a;
+      margin-top: 12px;
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+
+    /* App link button */
+    .cta {
+      display: block; text-align: center;
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: white; font-weight: 700; font-size: 16px;
+      padding: 16px 24px; border-radius: 16px;
+      text-decoration: none; margin: 24px 0;
+      box-shadow: 0 4px 20px rgba(22, 163, 74, 0.4);
+    }
+    .cta:active { opacity: 0.9; transform: scale(0.99); }
+
+    /* Tag */
+    .tag {
+      display: inline-block; padding: 2px 10px;
+      border-radius: 20px; font-size: 12px; font-weight: 600;
+      background: rgba(74,222,128,0.15); color: #4ade80;
+      border: 1px solid rgba(74,222,128,0.3);
+    }
+    .tag.blue { background: rgba(96,165,250,0.15); color: #60a5fa; border-color: rgba(96,165,250,0.3); }
+    .tag.gold { background: rgba(250,204,21,0.15); color: #facc15; border-color: rgba(250,204,21,0.3); }
+    .tag.red { background: rgba(239,68,68,0.15); color: #f87171; border-color: rgba(239,68,68,0.3); }
+
+    /* Divider */
+    .divider { height: 1px; background: #1e293b; margin: 8px 0; }
+
+    /* Visual phone bar */
+    .safari-bar {
+      background: #1e293b; border-radius: 10px; padding: 8px 12px;
+      font-size: 13px; color: #94a3b8; margin-top: 10px;
+      display: flex; align-items: center; gap-8px;
+      border: 1px solid #334155;
+    }
+    .ios-button {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: #334155; border-radius: 8px;
+      padding: 4px 10px; font-size: 12px; color: #e2e8f0;
+      font-weight: 600; margin: 2px;
+    }
+
+    /* Feature list */
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .feature {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 12px; padding: 14px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 6px;
+    }
+    .feature-icon { font-size: 24px; }
+    .feature-text { font-size: 12px; color: #94a3b8; }
+    .feature-title { font-size: 13px; font-weight: 600; color: white; }
+
+    /* Footer */
+    footer {
+      text-align: center; color: #475569; font-size: 12px;
+      padding: 20px 16px; border-top: 1px solid #1e293b;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 400px) {
+      .features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">⚽</div>
+    <h1>Viet Sports Club</h1>
+    <p>Hướng dẫn cài đặt & sử dụng cho thành viên đội</p>
+  </div>
+
+  <div class="container">
+
+    <!-- CTA -->
+    <a href="https://dangnh2021-hash.github.io/viet-sports-club/" class="cta">
+      🚀 Mở App Viet Sports Club
+    </a>
+
+    <!-- Features overview -->
+    <div class="section">
+      <div class="section-title">
+        <div class="num">⭐</div>
+        App làm được gì?
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">📅</div>
+          <div class="feature-title">Lịch thi đấu</div>
+          <div class="feature-text">Xem lịch đá bóng cuối tuần</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✅</div>
+          <div class="feature-title">Vote tham gia</div>
+          <div class="feature-text">Xác nhận đi đá hay không</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">👥</div>
+          <div class="feature-title">Đội hình</div>
+          <div class="feature-text">Xem mình đá đội nào</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Bảng xếp hạng</div>
+          <div class="feature-text">ELO rating & thống kê</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN 1: Cài lên màn hình iPhone -->
+    <div class="section">
+      <div class="section-title">
+        <div class="num">1</div>
+        Cài app lên màn hình iPhone (Safari)
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">🌐</div>
+          <div>
+            <div class="step-title">Mở Safari — KHÔNG dùng Chrome/Firefox</div>
+            <div class="step-sub">Bắt buộc phải dùng Safari mới cài được trên iPhone</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Mở app <em>Safari</em> trên iPhone (biểu tượng la bàn xanh)</div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Nhập địa chỉ: <em>dangnh2021-hash.github.io/viet-sports-club</em></div>
+          </div>
+          <div class="action">
+            <div class="action-num">3</div>
+            <div class="action-text">Nhấn <em>Enter</em> để mở trang</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">📤</div>
+          <div>
+            <div class="step-title">Nhấn nút Share (Chia sẻ)</div>
+            <div class="step-sub">Nút hình vuông có mũi tên ↑ ở thanh dưới Safari</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Nhìn xuống thanh điều hướng bên dưới Safari</div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Tìm biểu tượng <em>□↑</em> (hình vuông có mũi tên lên) ở giữa thanh</div>
+          </div>
+          <div class="action">
+            <div class="action-num">3</div>
+            <div class="action-text">Nhấn vào biểu tượng đó để mở menu Share</div>
+          </div>
+        </div>
+        <div class="tip">
+          <div class="tip-icon">💡</div>
+          <div>Trên iPhone mới (iOS 15+): nút Share nằm ở <strong>góc dưới giữa</strong> màn hình. iPhone cũ: nằm ở <strong>góc trên phải</strong>.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">➕</div>
+          <div>
+            <div class="step-title">Chọn "Add to Home Screen"</div>
+            <div class="step-sub">Thêm vào Màn hình chính</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Trong menu Share, <em>vuốt xuống</em> danh sách tùy chọn</div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Tìm và nhấn <em>"Add to Home Screen"</em> (Thêm vào Màn hình chính)</div>
+          </div>
+          <div class="action">
+            <div class="action-num">3</div>
+            <div class="action-text">Tên app hiện ra là <em>"Viet Sports Club"</em> — nhấn <em>Add</em> (Thêm) ở góc phải trên</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">🎉</div>
+          <div>
+            <div class="step-title">Xong! App xuất hiện trên màn hình</div>
+            <div class="step-sub">Icon ⚽ Viet Sports Club sẽ hiện trên Home Screen</div>
+          </div>
+        </div>
+        <div class="tip">
+          <div class="tip-icon">✅</div>
+          <div>Từ giờ mở app như mở app thường — nhấn icon ⚽ <strong>Viet Sports Club</strong> trên màn hình iPhone. App sẽ mở toàn màn hình, không có thanh địa chỉ Safari!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN 2: Đăng ký tài khoản -->
+    <div class="section">
+      <div class="section-title">
+        <div class="num">2</div>
+        Đăng ký tài khoản
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">📱</div>
+          <div>
+            <div class="step-title">Mở app và chọn tab Đăng ký</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Mở app → màn hình đăng nhập xuất hiện</div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Nhấn tab <em>"Đăng ký"</em> ở trên cùng</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">✍️</div>
+          <div>
+            <div class="step-title">Điền thông tin cơ bản</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text"><em>Username:</em> tên đăng nhập ngắn, không dấu, không khoảng trắng<br/>
+              <span style="color:#64748b;font-size:12px;">Ví dụ: minhquan, tuan95, hoanglong...</span></div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text"><em>Họ tên:</em> tên thật của bạn trong đội<br/>
+              <span style="color:#64748b;font-size:12px;">Ví dụ: Nguyễn Minh Quân</span></div>
+          </div>
+          <div class="action">
+            <div class="action-num">3</div>
+            <div class="action-text"><em>Password:</em> tối thiểu 6 ký tự, nhớ ghi nhớ lại</div>
+          </div>
+          <div class="action">
+            <div class="action-num">4</div>
+            <div class="action-text"><em>Phone:</em> tùy chọn, có thể bỏ qua</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">⚽</div>
+          <div>
+            <div class="step-title">Chọn vị trí chơi</div>
+            <div class="step-sub">Có thể chọn nhiều vị trí</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Nhấn vào các ô vị trí để chọn:</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+          <div style="background:#1e293b;border:1px solid #f97316;border-radius:10px;padding:10px;text-align:center;">
+            <div style="font-size:20px;">⚡</div>
+            <div style="color:#f97316;font-weight:700;">FW</div>
+            <div style="color:#94a3b8;font-size:11px;">Tiền đạo</div>
+          </div>
+          <div style="background:#1e293b;border:1px solid #60a5fa;border-radius:10px;padding:10px;text-align:center;">
+            <div style="font-size:20px;">🔄</div>
+            <div style="color:#60a5fa;font-weight:700;">MF</div>
+            <div style="color:#94a3b8;font-size:11px;">Tiền vệ</div>
+          </div>
+          <div style="background:#1e293b;border:1px solid #4ade80;border-radius:10px;padding:10px;text-align:center;">
+            <div style="font-size:20px;">🛡️</div>
+            <div style="color:#4ade80;font-weight:700;">DF</div>
+            <div style="color:#94a3b8;font-size:11px;">Hậu vệ</div>
+          </div>
+          <div style="background:#1e293b;border:1px solid #facc15;border-radius:10px;padding:10px;text-align:center;">
+            <div style="font-size:20px;">🧤</div>
+            <div style="color:#facc15;font-weight:700;">GK</div>
+            <div style="color:#94a3b8;font-size:11px;">Thủ môn</div>
+          </div>
+        </div>
+        <div class="tip">
+          <div class="tip-icon">💡</div>
+          <div>Chọn đúng vị trí để app xếp đội hình chính xác hơn. Nếu bạn chơi nhiều vị trí thì chọn tất cả!</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">📊</div>
+          <div>
+            <div class="step-title">Tự đánh giá chỉ số (1–99)</div>
+            <div class="step-sub">Tự đánh giá thật lòng — admin có thể điều chỉnh sau</div>
+          </div>
+        </div>
+        <div style="background:#0f172a;border-radius:10px;padding:12px;margin-top:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:12px;text-align:center;">
+            <div><div style="color:#4ade80;font-weight:700;">PAC</div><div style="color:#94a3b8;">Tốc độ</div></div>
+            <div><div style="color:#f97316;font-weight:700;">SHO</div><div style="color:#94a3b8;">Sút bóng</div></div>
+            <div><div style="color:#60a5fa;font-weight:700;">PAS</div><div style="color:#94a3b8;">Chuyền</div></div>
+            <div><div style="color:#a78bfa;font-weight:700;">DRI</div><div style="color:#94a3b8;">Rê bóng</div></div>
+            <div><div style="color:#34d399;font-weight:700;">DEF</div><div style="color:#94a3b8;">Phòng thủ</div></div>
+            <div><div style="color:#fb923c;font-weight:700;">PHY</div><div style="color:#94a3b8;">Thể lực</div></div>
+          </div>
+        </div>
+        <div class="warning">
+          <div class="tip-icon">⚠️</div>
+          <div>Mặc định là <strong>60/99</strong>. Nhập số từ 1–99. Chỉ số này dùng để app tự động cân bằng đội hình — tự ý thổi phồng thì đội hình sẽ không cân! 😄</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">✅</div>
+          <div>
+            <div class="step-title">Nhấn "Đăng ký" và đăng nhập</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Nhấn nút <em>Đăng ký</em></div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Thông báo <em>"Đăng ký thành công!"</em> → tự động chuyển sang tab đăng nhập</div>
+          </div>
+          <div class="action">
+            <div class="action-num">3</div>
+            <div class="action-text">Nhập username và password vừa tạo → nhấn <em>Đăng nhập</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN 3: Vote tham gia trận bóng -->
+    <div class="section">
+      <div class="section-title">
+        <div class="num">3</div>
+        Vote tham gia trận bóng
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">🏠</div>
+          <div>
+            <div class="step-title">Xem lịch trận sắp tới trên Dashboard</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Sau khi đăng nhập, màn hình <em>Dashboard</em> (trang chủ) xuất hiện</div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Phần <em>"Trận tiếp theo"</em> hiện thông tin: ngày, giờ, sân, địa chỉ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">🗳️</div>
+          <div>
+            <div class="step-title">Vote bằng 1 trong 3 lựa chọn</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
+          <div style="background:rgba(74,222,128,0.15);border:2px solid #4ade80;border-radius:12px;padding:12px;text-align:center;">
+            <div style="font-size:24px;">✅</div>
+            <div style="color:#4ade80;font-weight:700;font-size:13px;">Tham gia</div>
+            <div style="color:#86efac;font-size:11px;margin-top:2px;">Chắc chắn đi</div>
+          </div>
+          <div style="background:rgba(250,204,21,0.15);border:2px solid #facc15;border-radius:12px;padding:12px;text-align:center;">
+            <div style="font-size:24px;">🤔</div>
+            <div style="color:#facc15;font-weight:700;font-size:13px;">Có thể</div>
+            <div style="color:#fde68a;font-size:11px;margin-top:2px;">Chưa chắc</div>
+          </div>
+          <div style="background:rgba(239,68,68,0.15);border:2px solid #ef4444;border-radius:12px;padding:12px;text-align:center;">
+            <div style="font-size:24px;">❌</div>
+            <div style="color:#ef4444;font-weight:700;font-size:13px;">Không</div>
+            <div style="color:#fca5a5;font-size:11px;margin-top:2px;">Bận rồi</div>
+          </div>
+        </div>
+        <div class="tip" style="margin-top:12px;">
+          <div class="tip-icon">🔄</div>
+          <div>Bạn <strong>có thể thay đổi vote</strong> bất cứ lúc nào trước trận. Chỉ cần nhấn lại vào lựa chọn khác!</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">📋</div>
+          <div>
+            <div class="step-title">Xem ai đang vote tham gia</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Vào tab <em>Lịch thi đấu</em> ở thanh dưới</div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Nhấn <em>"Chi tiết"</em> trên trận bạn muốn xem</div>
+          </div>
+          <div class="action">
+            <div class="action-num">3</div>
+            <div class="action-text">Xem danh sách đầy đủ ai đang vote ✅ / 🤔 / ❌</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN 4: Xem đội hình & kết quả -->
+    <div class="section">
+      <div class="section-title">
+        <div class="num">4</div>
+        Xem đội hình & kết quả
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">👥</div>
+          <div>
+            <div class="step-title">Xem đội hình admin đã xếp</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Vào <em>Lịch thi đấu</em> → chọn trận → nhấn <em>"Chi tiết"</em></div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Cuộn xuống phần <em>"Đội hình đã xếp"</em> để xem mình đội nào</div>
+          </div>
+        </div>
+        <div class="tip">
+          <div class="tip-icon">⚽</div>
+          <div>Admin sẽ xếp đội tự động bằng AI cân bằng rating. Sau đó có thể điều chỉnh thủ công trước khi chốt.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <div class="step-icon">🏆</div>
+          <div>
+            <div class="step-title">Xem bảng xếp hạng sau trận</div>
+          </div>
+        </div>
+        <div class="phone-step">
+          <div class="action">
+            <div class="action-num">1</div>
+            <div class="action-text">Nhấn icon <em>🏆</em> ở thanh điều hướng dưới</div>
+          </div>
+          <div class="action">
+            <div class="action-num">2</div>
+            <div class="action-text">Xem thứ hạng theo <em>ELO Rating</em> — thắng tăng điểm, thua giảm điểm</div>
+          </div>
+          <div class="action">
+            <div class="action-num">3</div>
+            <div class="action-text">Nhấn <em>Hồ sơ</em> để xem chỉ số chi tiết của bản thân</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hệ thống điểm -->
+    <div class="section">
+      <div class="section-title">
+        <div class="num">⚡</div>
+        Hệ thống điểm ELO
+      </div>
+      <div class="step">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#0f172a;border-radius:10px;padding:12px;text-align:center;border:1px solid #166534;">
+            <div style="color:#4ade80;font-size:20px;font-weight:800;">~+20</div>
+            <div style="color:#86efac;font-size:12px;">Thắng trận</div>
+          </div>
+          <div style="background:#0f172a;border-radius:10px;padding:12px;text-align:center;border:1px solid #7f1d1d;">
+            <div style="color:#f87171;font-size:20px;font-weight:800;">~-15</div>
+            <div style="color:#fca5a5;font-size:12px;">Thua trận</div>
+          </div>
+          <div style="background:#0f172a;border-radius:10px;padding:12px;text-align:center;border:1px solid #78350f;">
+            <div style="color:#fb923c;font-size:20px;font-weight:800;">+3</div>
+            <div style="color:#fdba74;font-size:12px;">Mỗi bàn thắng</div>
+          </div>
+          <div style="background:#0f172a;border-radius:10px;padding:12px;text-align:center;border:1px solid #1e3a5f;">
+            <div style="color:#60a5fa;font-size:20px;font-weight:800;">+2</div>
+            <div style="color:#93c5fd;font-size:12px;">Mỗi kiến tạo</div>
+          </div>
+          <div style="background:#0f172a;border-radius:10px;padding:12px;text-align:center;border:1px solid #1e3a5f;">
+            <div style="color:#34d399;font-size:20px;font-weight:800;">+5</div>
+            <div style="color:#6ee7b7;font-size:12px;">Không thủng lưới (GK/DF)</div>
+          </div>
+          <div style="background:#0f172a;border-radius:10px;padding:12px;text-align:center;border:1px solid #78350f;">
+            <div style="color:#facc15;font-size:20px;font-weight:800;">+10</div>
+            <div style="color:#fde68a;font-size:12px;">MVP trận đấu 🏅</div>
+          </div>
+        </div>
+        <div class="tip" style="margin-top:12px;">
+          <div class="tip-icon">📈</div>
+          <div>Điểm ELO tính theo sức mạnh đối thủ — thắng đội mạnh được nhiều điểm hơn thắng đội yếu!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liên hệ -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-icon">🆘</div>
+        <div>
+          <div class="step-title">Cần hỗ trợ?</div>
+          <div class="step-sub">Liên hệ Admin đội Viet Sports Club</div>
+        </div>
+      </div>
+      <div class="step-body">
+        Nếu gặp vấn đề khi đăng ký, đăng nhập hoặc app báo lỗi, nhắn tin cho <strong>Admin</strong> nhờ kiểm tra. Admin có thể reset password hoặc điều chỉnh thông tin cho bạn.
+      </div>
+    </div>
+
+    <!-- Open App button -->
+    <a href="https://dangnh2021-hash.github.io/viet-sports-club/" class="cta">
+      ⚽ Vào App Viet Sports Club ngay!
+    </a>
+
+  </div>
+
+  <footer>
+    Viet Sports Club © 2025 · Powered by Google Sheets + GitHub Pages
+  </footer>
+
+</body>
+</html>
