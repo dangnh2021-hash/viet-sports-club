@@ -5,7 +5,7 @@
 
 const CONFIG = {
   // Paste URL Google Apps Script Web App của bạn vào đây
-  API_URL: 'https://script.google.com/macros/s/AKfycbzNwxdQLDJ5a1VnniJlVxAet0hD7aa3jBxnSPfDc9K8g6vWX81FRrjYb9gelVnejuUNsw/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzTVLutLM5x2H0X_s_MYnbnubLjOHhHh57enDweuWrmvnvTYtcaGteZ2sVG8UAHCImaZA/exec',
 
   APP_NAME: 'Viet Sports Club',
   VERSION: '1.0.0',
